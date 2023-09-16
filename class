@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class BooleanArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+
+		// Get the number of branches
+		System.out.print("Enter the number of branches: ");
+		int numBranches = scanner.nextInt();
+
+		// Create an array to store attendance status
+		boolean[][][] attendance = new boolean[numBranches][][];
+
+		// Loop through each branch
+		for (int branch = 0; branch < numBranches; branch++) {
+			System.out.print("Enter the number of teams in Branch " + (branch + 1) + ": ");
+			int numTeams = scanner.nextInt();
+			attendance[branch] = new boolean[numTeams][];
+
+			// Loop through each team in the branch
+			for (int team = 0; team < numTeams; team++) {
+				System.out.print(
+						"Enter the number of employees in Team " + (team + 1) + " of Branch " + (branch + 1) + ": ");
+				int numEmployees = scanner.nextInt();
+				attendance[branch][team] = new boolean[numEmployees];
+
+				// Loop through each employee in the team
+				for (int employee = 0; employee < numEmployees; employee++) {
+					System.out.print("Is Employee " + (employee + 1) + " present? (true/false): ");
+					attendance[branch][team][employee] = scanner.nextBoolean();
+				}
+			}
+		}
+
+		// Display the attendance status
+		System.out.println("\nAttendance Status:");
+
+		for (int branch = 0; branch < numBranches; branch++) {
+			System.out.println("Branch " + (branch + 1) + ":");
+			for (int team = 0; team < attendance[branch].length; team++) {
+				System.out.println("  Team " + (team + 1) + ":");
+				for (int employee = 0; employee < attendance[branch][team].length; employee++) {
+					System.out.println("    Employee " + (employee + 1) + ": "
+							+ (attendance[branch][team][employee] ? "Present" : "Absent"));
+				}
+			}
+		}
+
+		// Close the scanner
+		scanner.close();
+	}
+
+}
